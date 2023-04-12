@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 6 - Gustavo Bedendo</title>
+
+  <style>
+    body {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+
+    input {
+      border-radius: 4px;
+    }
+
+    label {
+      font-size: 20px;
+    }
+
+    input[type="button"] {
+      border: none;
+      background-color: #ccca;
+      width: 100%;
+      font-size: 18px;
+      padding: 8px 0;
+    }
+  </style>
+
+  <script>
+    function calculateAndShow() {
+      let name = "";
+      let grade1 = 0;
+      let grade2 = 0;
+      let grade3 = 0;
+
+      name = document.getElementById('name').value;
+      grade1 = document.getElementById('grade1').value;
+      grade2 = document.getElementById('grade2').value;
+      grade3 = document.getElementById('grade3').value;
+
+      alert(`A média de ${name} é igual a ${((Number(grade1) + Number(grade2) + Number(grade3)) / 3).toFixed(2)}`);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="input-wrapper">
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name" />
+  </div>
+  <div class="input-wrapper">
+    <label for="grade1">Nota 1</label>
+    <input type="text" name="grade1" id="grade1" />
+  </div>
+  <div class="input-wrapper">
+    <label for="grade2">Nota 2</label>
+    <input type="text" name="grade2" id="grade2" />
+  </div>
+  <div class="input-wrapper">
+    <label for="grade3">Nota 3</label>
+    <input type="text" name="grade3" id="grade3" />
+  </div>
+  <input type="button" value="Calcular média" onclick="calculateAndShow()" />
+</body>
+
+</html>
