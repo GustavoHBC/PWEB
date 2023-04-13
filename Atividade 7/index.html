@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 7 - Gustavo Bedendo</title>
+
+  <style>
+    html {
+      background-color: #c6c6c6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    button {
+      background-color: #4b58ca;
+      border: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #fff;
+      border-radius: 4px;
+      min-width: 80px;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .center {
+      justify-content: center;
+    }
+
+    #result {
+      margin: 24px 0px;
+    }
+  </style>
+
+  <script>
+    function chooseOption(option) {
+      let playerChoice = option;
+      let computerChoice = getComputerChoice();
+
+      if (playerChoice === 'scissors' && computerChoice === 'paper') {
+        return document.getElementById('result').innerHTML = 'Você ganhou escolhendo Tesoura, o computador escolheu Papel.'
+      }
+
+      if (playerChoice === 'paper' && computerChoice === 'scissors') {
+        return document.getElementById('result').innerHTML = 'Você perdeu escolhendo Papel, o computador escolheu Tesoura.'
+      }
+
+      if (playerChoice === 'paper' && computerChoice === 'rock') {
+        return document.getElementById('result').innerHTML = 'Você ganhou escolhendo Papel, o computador escolheu Pedra.'
+      }
+
+      if (playerChoice === 'rock' && computerChoice === 'paper') {
+        return document.getElementById('result').innerHTML = 'Você perdeu escolhendo Pedra, o computador escolheu Papel.'
+      }
+
+      if (playerChoice === 'rock' && computerChoice === 'scissors') {
+        return document.getElementById('result').innerHTML = 'Você ganhou escolhendo Pedra, o computador escolheu Tesoura.'
+      }
+
+      if (playerChoice === 'scissors' && computerChoice === 'rock') {
+        return document.getElementById('result').innerHTML = 'Você perdeu escolhendo Tesoura, o computador escolheu Pedra.'
+      }
+
+      return document.getElementById('result').innerHTML = 'Empate';
+    }
+
+    function getComputerChoice() {
+      return ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)];
+    }
+
+    function reload() {
+      return window.location.reload();
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Pedra, Papel e Tesoura</h1>
+
+  <div class="button-wrapper">
+    <button id="rock" onclick="chooseOption('rock')">Pedra</button>
+    <button id="paper" onclick="chooseOption('paper')">Papel</button>
+    <button id="scissors" onclick="chooseOption('scissors')">Tesoura</button>
+  </div>
+  <p id="result"></p>
+  <div class="button-wrapper center">
+    <button onclick="reload()">
+      Limpar
+    </button>
+  </div>
+</body>
+
+</html>
