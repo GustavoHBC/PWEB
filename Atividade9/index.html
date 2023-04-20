@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 9 - Gustavo Bedendo</title>
+
+    <style>
+        html {
+            background-color: #c6c6c6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #4b58ca;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 4px;
+            min-width: 80px;
+            cursor: pointer;
+            transition: all ease-in-out 200ms;
+            max-width: 150px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+        }
+
+        input {
+            max-width: 60px;
+        }
+    </style>
+
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <h4>Insira 3 números</h4>
+    <div class="input-wrapper">
+        <input type="number" id="number1">
+        <input type="number" id="number2">
+        <input type="number" id="number3">
+    </div>
+    <div class="button-wrapper">
+        <button onclick="getGreatestNumber()">Mostrar número maior</button>
+        <button onclick="organizeNumbers()">Posicionar números em ordem crescente</button>
+    </div>
+</body>
+
+</html>

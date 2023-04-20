@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 8 - Gustavo Bedendo</title>
+
+    <style>
+        html {
+            background-color: #c6c6c6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h4,
+        h5 {
+            text-align: center;
+        }
+
+        button {
+            background-color: #4b58ca;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 4px;
+            min-width: 80px;
+            cursor: pointer;
+            transition: all ease-in-out 200ms;
+        }
+
+        input,
+        textarea,
+        select {
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        label {
+            margin-bottom: 4px;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .center {
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results {
+            margin-top: 24px;
+        }
+
+        .results>div {
+            margin-bottom: 8px;
+        }
+
+        .results>div>span~span {
+            color: #4b58ca;
+        }
+    </style>
+
+    <script>
+        const watchers = [];
+
+        function resetInputs(inputs) {
+            if (!Array.isArray(inputs)) return '';
+            inputs.forEach((input) => input.value = "");
+        }
+
+        function results(currentWatchers) {
+            if (!Array.isArray(currentWatchers)) return {
+                averageAge: 0,
+                oldest: 0,
+                youngest: 0,
+                worstQuantity: 0,
+                percentage: 0,
+                genderQuantity: {
+                    male: 0,
+                    female: 0,
+                },
+            };
+
+            const averageAge = (currentWatchers.reduce((acc, currentValue) => acc + currentValue.age, 0) / currentWatchers.length).toFixed(2);
+            const percentage = (currentWatchers.filter(({ opinion }) => opinion === 4 || opinion === 5).length * 100 / currentWatchers.length).toFixed(2);
+
+            return {
+                averageAge,
+                oldest: Math.max(...currentWatchers.map(({ age }) => age)),
+                youngest: Math.min(...currentWatchers.map(({ age }) => age)),
+                worstQuantity: currentWatchers.filter(({ opinion }) => opinion === 1).length,
+                percentage,
+                genderQuantity: {
+                    male: currentWatchers.filter(({ gender }) => gender === 'male').length,
+                    female: currentWatchers.filter(({ gender }) => gender === 'female').length
+                }
+            }
+        }
+
+        function showResults({ averageAge, oldest, youngest, worstQuantity, percentage, genderQuantity }) {
+            const strings = {
+                malestring: genderQuantity.male > 0 ? 'homens' : 'homem',
+                femalestring: genderQuantity.female > 0 ? 'mulheres' : 'mulher',
+            };
+
+            document.getElementById('result1').innerHTML = averageAge;
+            document.getElementById('result2').innerHTML = oldest;
+            document.getElementById('result3').innerHTML = youngest;
+            document.getElementById('result4').innerHTML = worstQuantity;
+            document.getElementById('result5').innerHTML = `${percentage}%`;
+            document.getElementById('result6').innerHTML = `${genderQuantity.male} ${strings.malestring} e ${genderQuantity.female} ${strings.femalestring} responderam`;
+        }
+
+        function addWatcher() {
+            if (watchers.length >= 45) return alert('Você atingiu o número máximo de opiniões possíveis para cadastrar!');
+
+            const name = document.getElementById('name').value;
+            const age = Number(document.getElementById('age').value) > 150 ? 150 : Number(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const opinion = Number(document.getElementById('opinion').value) > 5 ? 5 : Number(document.getElementById('opinion').value);
+
+            watchers.push({ name, age, gender, opinion });
+            resetInputs([
+                document.getElementById('name'),
+                document.getElementById('age'),
+                document.getElementById('gender'),
+                document.getElementById('opinion')
+            ]);
+
+            showResults(results(watchers));
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <h4>Formulário de opinião acerca do filme</h4>
+        <div class="container">
+            <label for="name" maxlength="255">Nome</label>
+            <input type="text" id="name">
+            <label for="age">Idade</label>
+            <input type="number" id="age" max="150">
+            <label for="gender">Sexo</label>
+            <select name="gender" id="gender">
+                <option value="female">Feminino</option>
+                <option value="male">Masculino</option>
+            </select>
+            <label for="opinion">Opinião</label>
+            <select name="opinion" id="opinion">
+                <option value="4">4 - Ótimo</option>
+                <option value="3">3 - Bom</option>
+                <option value="2">2 - Regular</option>
+                <option value="1">1 - Péssimo</option>
+            </select>
+        </div>
+
+        <button onclick="addWatcher()">Adicionar</button>
+
+        <div class="results">
+            <h5>Resultados</h5>
+            <div>
+                <span>Média de idade das pessoas que responderam o questionário: </span>
+                <span id="result1">teste</span>
+            </div>
+            <div>
+                <span>Idade da pessoa mais velha: </span>
+                <span id="result2"></span>
+            </div>
+            <div>
+                <span>Idade da pessoa mais nova: </span>
+                <span id="result3"></span>
+            </div>
+            <div>
+                <span>Quantidade de pessoas que responderam "péssimo": </span>
+                <span id="result4"></span>
+            </div>
+            <div>
+                <span>Porcentagem de pessoas que responderam "ótimo" ou "bom": </span>
+                <span id="result5"></span>
+            </div>
+            <div>
+                <span>Número de mulheres e homens que responderam o questionário: </span>
+                <span id="result6"></span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
