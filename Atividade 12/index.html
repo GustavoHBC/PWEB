@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 12 - Gustavo Bedendo</title>
+
+  <script>
+    function breakWindow() {
+      event.target.src = './assets/janelaquebra.png';
+      document.getElementById('windowText').innerHTML = 'Janela Quebrada';
+    }
+
+    function openWindow() {
+      event.target.src = './assets/janelaaberta.png';
+      document.getElementById('windowText').innerHTML = 'Janela Aberta'
+    }
+
+    function closeWindow() {
+      event.target.src = './assets/janelafechada.png';
+      document.getElementById('windowText').innerHTML = 'Janela Fechada';
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: rgb(235, 235, 235);
+      max-width: 960px;
+      margin: 72px auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1 id="windowText">Janela Fechada</h1>
+    <img src="./assets/janelafechada.png" onclick="breakWindow()" onmouseenter="openWindow()"
+      onmouseleave="closeWindow()" width="350" height="350" />
+  </main>
+</body>
+
+</html>
